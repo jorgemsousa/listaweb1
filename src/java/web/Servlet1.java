@@ -39,18 +39,25 @@ public class Servlet1 extends HttpServlet {
             out.println("<head>");
             out.println("<title>Lista de Disciplinas</title>");
             
+            out.println("<link href='frameworks/bootstrap-3.3.7-dist/css/bootstrap.min.css' rel='stylesheet' type='text/css'/>");
+            out.println("<script src='frameworks/bootstrap-3.3.7-dist/js/bootstrap.min.js' type='text/javascript'></script>");
             out.println("</head>");
             out.println("<body>");
-       
-            out.println("<h1>Consultando um database MySql</h1>");
-            out.println("<h2>Tabela Alunos</h2>");
+            
+            out.println("<div class='container'>");
+            
+            out.println("<div class=\"alert alert-info\" role=\"alert\"><strong>Programação WEB -</strong> Prof. Monteiro</div>");
+            out.println("<div class=\"panel panel-primary\">");
+            out.println("<div class=\"panel-heading\">Listagem das Disciplinas</div>");
+            out.println("<div class=\"panel-body\">");
+            
 	       try {
 	            Class.forName( JDBC_DRIVER );
 	            conn = DriverManager.getConnection( DATABASE_URL, 
                             "root", "root" );
 	            Statement st = conn.createStatement();
 	            ResultSet rec = st.executeQuery("SELECT * FROM disciplinas");
-                    out.println("<table border=1><tr>");
+                    out.println("<table class='table table-bordered' style='text-align: center'><tr>");
 	            out.println("<td><b>Disciplina</b></td><td><b>Nome da Disciplina</b></td><td><b>Carga Horária</b></td>" +
                         "</tr>");
 	            while(rec.next()) {
@@ -63,11 +70,15 @@ public class Servlet1 extends HttpServlet {
 	        } catch (SQLException s) {
 	            out.println("SQL Error: " + s.toString() + " "
 	                + s.getErrorCode() + " " + s.getSQLState());
-	        } catch (Exception e) {
+	        } catch (ClassNotFoundException e) {
 	            out.println("Error: " + e.toString()
 	                + e.getMessage());
 	        }
-	    
+               out.println("</div>");
+               out.println("</div>");
+               out.println("</div>");
+	out.println("</div>");
+        out.println("<script src=\"frameworks/jquery-3.2.1.min.js\" type=\"text/javascript\"></script>");
         out.println("</body>");
         out.println("</html>");
     }
