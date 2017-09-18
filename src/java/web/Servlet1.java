@@ -37,12 +37,8 @@ public class Servlet1 extends HttpServlet {
             String saida = null;
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletMySql33</title>");
-            out.println("<style type=\"text/css\">" +
-                "<!-- " +
-                "body {background-color:beige; color:black; font-size:90%}"+
-                "td   {font-size: 90%; background-color:white; color: black}" +
-                "//--></style>");
+            out.println("<title>Lista de Disciplinas</title>");
+            
             out.println("</head>");
             out.println("<body>");
        
