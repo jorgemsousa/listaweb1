@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package web;
+package controler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Servlet1", urlPatterns = {"/Servlet1"})
 public class Servlet1 extends HttpServlet {
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";        
-    static final String DATABASE_URL = "jdbc:mysql://localhost/listaweb1";
+        static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";        
+        static final String DATABASE_URL = "jdbc:mysql://localhost/listaweb1";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

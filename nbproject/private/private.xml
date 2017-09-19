@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jorge/Modelos/Projetos/listaweb1/listaweb1/web/index.html</file>
+            <file>file:/home/jorge/Modelos/Projetos/listaweb1/listaweb1/web/index.jsp</file>
+            <file>file:/home/jorge/Modelos/Projetos/listaweb1/listaweb1/src/java/controler/acessoServlet.java</file>
+            <file>file:/home/jorge/Modelos/Projetos/listaweb1/listaweb1/src/java/controler/Servlet1.java</file>
+            <file>file:/home/jorge/Modelos/Projetos/listaweb1/listaweb1/src/java/model/Dao.java</file>
         </group>
     </open-files>
 </project-private>
