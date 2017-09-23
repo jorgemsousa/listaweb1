@@ -7,11 +7,6 @@ package controler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,36 +17,33 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jorge
  */
-@WebServlet(name = "acessoServlet", urlPatterns = {"/acessoServlet"})
-public class acessoServlet extends HttpServlet {
+@WebServlet(name = "Servlet2", urlPatterns = {"/Servlet2"})
+public class Servlet2 extends HttpServlet {
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";        
-    static final String DATABASE_URL = "jdbc:mysql://localhost/listaweb1";
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        int matricula = Integer.parseInt(request.getParameter("matricula"));
-        
-        Connection conn;
-        
-      try {  
-        Class.forName(JDBC_DRIVER);
-        conn = DriverManager.getConnection(DATABASE_URL, "root", "root");
-          Statement state = conn.createStatement();
-          ResultSet resul = state.executeQuery("SELECT * FROM alunos WHERE matricula ="+ matricula);
-          
-          if(resul != null){
-              
-          }
-      }
-      catch (SQLException s){
-          out.print("SQL ERROR: "+ s.toString()+" "+ s.getSQLState());
-      }
-      catch (Exception e){
-          out.println("Error: "+e.toString() + e.getMessage());
-      }
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Servlet2</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Servlet2 at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
