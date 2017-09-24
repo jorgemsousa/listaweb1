@@ -7,7 +7,6 @@
 package controler;
 
 import entidades.Disciplinas;
-import entidades.Turmas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -34,6 +33,7 @@ public class Servlet1 extends HttpServlet {
         
         protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            
         PrintWriter out = response.getWriter();
         String matricula = request.getParameter("matricula");
         
@@ -42,26 +42,13 @@ public class Servlet1 extends HttpServlet {
             Connection conn = DriverManager.getConnection(DATABASE_URL, "root", "root" );
 	    Statement state = conn.createStatement();
           
-            //ResultSet resultado = state.executeQuery("SELECT * FROM alunos WHERE matricula =" + matricula );
+            ResultSet resultado1 = state.executeQuery("SELECT * FROM alunos WHERE matricula =" + matricula );
             // processa resultados da consulta
+            if(null != resultado1){               
             
-               ResultSet resultado = state.executeQuery("SELECT * FROM disciplinas, turmas WHERE iddisciplina = disciplinas_iddisciplina");
-                
-                
-//                Turmas turma;
-//                ArrayList<Turmas> lista = new ArrayList<>();
-//                
-//                while(resultado.next()){
-//                   turma = new Turmas();                   
-//                   
-//                   turma.setIdturma(resultado.getString(2));
-//                   turma.setHorario1(resultado.getString(3));
-//                   turma.setHorario2(resultado.getString(4));
-//                   turma.setHorario3(resultado.getString(5));
-//                   
-//                   
-//                   lista.add(turma);
-//                }                
+            ResultSet resultado = state.executeQuery("SELECT * FROM disciplinas, turmas WHERE iddisciplina = disciplinas_iddisciplina");
+                               
+//                              
                
                 Disciplinas disc;          
                 ArrayList lista = new ArrayList<>();
@@ -81,14 +68,14 @@ public class Servlet1 extends HttpServlet {
                     
                     
                     lista.add(disc);
-                    
+                   
                     
                }
                 
                 request.setAttribute("lista", lista);
                 request.getRequestDispatcher("/listar.jsp").forward(request, response);
                 
-                   
+            }    
             
             state.close();
 	    } catch (SQLException s) {
@@ -97,7 +84,7 @@ public class Servlet1 extends HttpServlet {
 	    } catch (Exception e) {
 	      out.println("Error: " + e.toString() + e.getMessage());
 	    }
-                      
+                   
             out.close();
         
     

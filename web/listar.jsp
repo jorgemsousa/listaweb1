@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Disciplinas Ofertadas</title>
         <link href="frameworks/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="frameworks/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
     </head>
@@ -33,11 +33,11 @@
                                     <td><strong>Horario - 1</strong></td>
                                     <td><strong>Horario - 2</strong></td>
                                     <td><strong>Horario - 3</strong></td>                                    
-                                    <td><strong>Visualizar</strong></td>
+                                    <td><strong>Selecionar</strong></td>
                                 </tr>
                                 </thead>
                                 <tr>
-                                    <c:forEach var="inc" items="${lista}" >
+                                    <c:forEach var="inc" items="${lista}" varStatus="meuIndex" >
                                     <tr>
                                         <td>
                                             <c:out value="${inc.iddisciplina}"></c:out>
@@ -61,11 +61,13 @@
                                             <c:out value="${inc.horario3}"></c:out>
                                         </td>
                                         
-                                        <td> 
-                                        
-                                             <input  type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">  
-                                        
+                                        <td>                                           
+                                            
+                                            <a href="/listaweb1/Servlet2?id=${inc.idturma}&id1=${inc.iddisciplina}"> 
+                                                <input  type="radio" name="radio" value="radio ${meuIndex.index}" aria-label="...">  	
+                                            </a>
                                         </td> 
+                                        
                                     </tr>                                    
                                     </c:forEach>
                                     
@@ -73,10 +75,14 @@
                             </table>  
                         
                     </div>
-                                    
+                                 
                 </div>  
+             
+        </div>  
+                 
+        <div class="footer">
             
-        </div>   
+        </div>
         <script src="frameworks/jquery-3.2.1.min.js" type="text/javascript"></script>
     </body>
 </html>
