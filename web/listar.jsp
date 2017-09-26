@@ -63,7 +63,7 @@
                                         
                                         <td>                                           
                                             
-                                            <a href="/listaweb1/Servlet2?id=${inc.idturma}&id1=${inc.iddisciplina}"> 
+                                            <a href="/listaweb1/Servlet2?id=${inc.idturma}&id1=${inc.iddisciplina}&id2=${inc.nomedisciplina}&id3=${inc.cargahoraria}"> 
                                                 <input  type="radio" name="radio" value="radio ${meuIndex.index}" aria-label="...">  	
                                             </a>
                                         </td> 
@@ -75,14 +75,19 @@
                             </table>  
                         
                     </div>
+                     <div class="panel panel-default">
+                      <div class="panel-body">
+                        <div><a class="btn btn-default" href="/listaweb1/index.html" role="button">Sair do Sistema</a></div>
+                      </div>
+                    </div>
                                  
                 </div>  
-             
+       
+            
+        
         </div>  
                  
-        <div class="footer">
-            
-        </div>
+        
         <script src="frameworks/jquery-3.2.1.min.js" type="text/javascript"></script>
     </body>
 </html>

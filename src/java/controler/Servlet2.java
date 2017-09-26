@@ -33,6 +33,8 @@ public class Servlet2 extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String turma = request.getParameter("id");
             String disciplina = request.getParameter("id1");
+            String nome = request.getParameter("id2");
+            String hora = request.getParameter("id3");
             
             try {
                 Class.forName(JDBC_DRIVER);
@@ -42,9 +44,7 @@ public class Servlet2 extends HttpServlet {
             Connection conn = DriverManager.getConnection(DATABASE_URL, "root", "root" );
 	    Statement state = conn.createStatement();
             
-            ResultSet result = state.executeQuery("SELECT * FROM alunos");
-            
-            
+                       
       out.println("<html>");
           out.println("<head>");
             out.println("<title>Detalhes</title>");
@@ -57,20 +57,43 @@ public class Servlet2 extends HttpServlet {
                         
             out.println("<div class=\"alert alert-info\" role=\"alert\">");
             out.println("<strong>Programação WEB -</strong> Prof. Monteiro</div>");
+            
+            out.println("<div class='panel panel-primary'>");
+                 out.println("<div class='panel-heading'>Disciplina</div>");
+                 out.println("<table class='table'>");
+                     out.println("<thead>");
+                         out.println("<tr class='info'>");
+                             out.println("<td><strong>Cod. Disiciplina:  </strong>"+ disciplina +"</td>");
+                             out.println("<td><strong>Nome Disciplina:  </strong>"+ nome +"</td>");
+                             out.println("<td><strong>Carga Horária:  </strong>"+ hora +"</td>");
+                         out.println("</tr>");
+                     out.println("</thead>");
+                 out.println("</table>");
+             out.println("</div>");
+             
+             ResultSet result = state.executeQuery("select * FROM alunos where turmas_idturma = '"+ turma +"' and turmas_disciplinas_iddisciplina = '"+ disciplina +"'");
+            
 	        out.println("<div class=\"panel panel-primary\">");
-                out.println("<div class=\"panel-heading\">Disciplina</div>");
-                    out.println("<table class=\"table\">");
+                out.println("<div class=\"panel-heading\">Alunos Matriculados</div>");
+                    out.println("<table class='table table-bordered' style='text-align: center'>");
                     out.println("<thead>");
-	            out.println("<tr class=\"info\"><td><b>Matrícula</b></td><td><b>Nome do Aluno</b></td></tr></thead>");
+	            out.println("<tr class=\"info\"><td><b>Matrícula</b></td><td><b>Nome do Aluno</b></td><td><b>Turma</b></td><td><b>Disciplina</b></td><td><b>Curso</b></td></tr></thead>");
                         while(result.next()) {
                             out.println("<tr><td>"+ result.getString(1) + "</td>");
-                            out.println ("<td>"+result.getString(2)+ "</td></tr>");
+                            out.println ("<td>"+result.getString(2)+ "</td>");
+                            out.println ("<td>"+result.getString(3)+ "</td>");
+                            out.println ("<td>"+result.getString(4)+ "</td>");
+                            out.println ("<td>"+result.getString(5)+ "</td></tr>");
                         }     
                     out.println("</table>");
                 out.println("</div>");
 	            state.close();
-	        
+                    out.println("<div class=\"panel panel-default\">");
+                    out.println("<div class=\"panel-body\">");
+	            out.println("<a class=\"btn btn-default\" href=\"/listaweb1/Servlet1\" role=\"button\">Voltar</a>");
 	            out.println("</div>");
+                    out.println("</div>");
+                    out.println("</div>");
                     out.println("<script src=\"frameworks/jquery-3.2.1.min.js\" type=\"text/javascript\"></script>");
                     out.println("</body>");
      out.println("</html>");

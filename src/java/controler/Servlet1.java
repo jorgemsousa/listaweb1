@@ -33,30 +33,22 @@ public class Servlet1 extends HttpServlet {
         
         protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-        PrintWriter out = response.getWriter();
-        String matricula = request.getParameter("matricula");
+            PrintWriter out = response.getWriter();
         
         try {
 	    Class.forName(JDBC_DRIVER);
             Connection conn = DriverManager.getConnection(DATABASE_URL, "root", "root" );
-	    Statement state = conn.createStatement();
-          
-            ResultSet resultado1 = state.executeQuery("SELECT * FROM alunos WHERE matricula =" + matricula );
-            // processa resultados da consulta
-            if(null != resultado1){               
+	    Statement state = conn.createStatement();        
+                         
             
-            ResultSet resultado = state.executeQuery("SELECT * FROM disciplinas, turmas WHERE iddisciplina = disciplinas_iddisciplina");
-                               
-//                              
-               
+               ResultSet resultado = state.executeQuery("SELECT * FROM disciplinas, turmas WHERE iddisciplina = disciplinas_iddisciplina");
+                           
                 Disciplinas disc;          
                 ArrayList lista = new ArrayList<>();
                  
                 while(resultado.next()){
                     
-                    disc = new Disciplinas();
-                   
+                    disc = new Disciplinas();                   
                     
                     disc.setIddisciplina(resultado.getString(1));
                     disc.setNomedisciplina(resultado.getString(2));
@@ -64,24 +56,22 @@ public class Servlet1 extends HttpServlet {
                     disc.setIdturma(resultado.getString(4));
                     disc.setHorario1(resultado.getString(5));
                     disc.setHorario2(resultado.getString(6));
-                    disc.setHorario3(resultado.getString(7));
-                    
+                    disc.setHorario3(resultado.getString(7));                    
                     
                     lista.add(disc);
-                   
-                    
-               }
+                                       
+                }
                 
                 request.setAttribute("lista", lista);
                 request.getRequestDispatcher("/listar.jsp").forward(request, response);
                 
-            }    
+             
             
             state.close();
 	    } catch (SQLException s) {
 	      out.println("SQL Error: " + s.toString() + " "
 	                + s.getErrorCode() + " " + s.getSQLState());
-	    } catch (Exception e) {
+	    } catch (IOException | ClassNotFoundException | ServletException e) {
 	      out.println("Error: " + e.toString() + e.getMessage());
 	    }
                    
